@@ -1,40 +1,78 @@
 <ion-header><ion-toolbar color="primary"><ion-title>Registro de estudiantes</ion-title></ion-toolbar></ion-header>
 <ion-content class="ion-padding">
   <ion-card>
-    <ion-card-header><ion-card-title>Nuevo estudiante</ion-card-title></ion-card-header>
+    <ion-card-header><ion-card-title>Registro de postulación</ion-card-title></ion-card-header>
     <ion-card-content>
-      <ion-item><ion-input label="Nombre" labelPlacement="stacked" placeholder="Ingrese su nombre" [(ngModel)]="nombre"></ion-input></ion-item>
-      <ion-item><ion-input label="Correo electrónico" labelPlacement="stacked" type="email" placeholder="correo@ejemplo.com" [(ngModel)]="correo"></ion-input></ion-item>
-      <ion-item><ion-input label="Teléfono" labelPlacement="stacked" type="tel" placeholder="Ingrese su numero de teléfono" [(ngModel)]="telefono"></ion-input></ion-item>
+      <h2>Datos personales</h2>
       <ion-item>
-        <ion-datetime presentation="date" [(ngModel)]="fechaNacimiento">
-          <span slot="title">Ingrese su año de nacimiento</span>
-        </ion-datetime>
+        <ion-input label="Nombres y apellidos" labelPlacement="stacked" placeholder="Ingrese sus nombres y apellidos" [(ngModel)]="nombre"></ion-input>
       </ion-item>
       <ion-item>
-      <ion-item>
-        <ion-list>
-          <ion-item>
-            <ion-select placeholder="Seleciona los cargos" [(ngModel)]="cargo">
-              <div slot="label">Cargo al que postula</div>
-              <ion-select-option value="Desarrollador móvil">Desarrollador móvil</ion-select-option>
-              <ion-select-option value="Desarrrollador web">Desarrrollador web</ion-select-option>
-              <ion-select-option value="Encargado de Ciberseguridad">Encargado de Ciberseguridad</ion-select-option>
-              <ion-select-option value="IT Service" >IT Service</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
+        <ion-input label="Correo electrónico" labelPlacement="stacked" type="email" placeholder="correo@ejemplo.com" [(ngModel)]="correo"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-radio-group value="Nivel académico" [(ngModel)]="nivelAcademico">
-          <ion-radio value="Tercer Nivel">Tercer Nivel</ion-radio><br />
-          <ion-radio value="Cuarto Nivel">Cuarto Nivel</ion-radio><br />
-          <ion-radio value="Quinto nivel">Quinto nivel</ion-radio>
+        <ion-input label="Teléfono" labelPlacement="stacked" type="tel" placeholder="Ingrese su número de teléfono" [(ngModel)]="telefono"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fecha de nacimiento</ion-label>
+        <ion-datetime presentation="date" [max]="fechaHoy" [(ngModel)]="fechaNacimiento"></ion-datetime>
+      </ion-item>
+
+      <h2>Perfil profesional</h2>
+      <ion-item>
+        <ion-select label="Cargo al que postula" labelPlacement="stacked" placeholder="Seleccione un cargo" [(ngModel)]="cargo">
+          <ion-select-option value="Desarrollador móvil">Desarrollador móvil</ion-select-option>
+          <ion-select-option value="Desarrollador web">Desarrollador web</ion-select-option>
+          <ion-select-option value="Ciberseguridad">Ciberseguridad</ion-select-option>
+          <ion-select-option value="Soporte de TI">Soporte de TI</ion-select-option>
+          <ion-select-option value="Analista de datos">Analista de datos</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-list>
+        <ion-radio-group [(ngModel)]="nivelAcademico">
+          <ion-list-header><ion-label>Nivel académico</ion-label></ion-list-header>
+          <ion-item><ion-radio value="Tercer nivel">Tercer nivel</ion-radio></ion-item>
+          <ion-item><ion-radio value="Cuarto nivel">Cuarto nivel</ion-radio></ion-item>
+          <ion-item><ion-radio value="Quinto nivel">Quinto nivel</ion-radio></ion-item>
         </ion-radio-group>
+      </ion-list>
+      <ion-item>
+        <ion-input label="Años de experiencia" labelPlacement="stacked" type="number" min="0" max="50" step="1" placeholder="0 a 50" [(ngModel)]="experienciaAnios"></ion-input>
       </ion-item>
-      <ion-item><ion-input label="Años de experiencia" labelPlacement="stacked" type="number" placeholder="Ingrese sus años de experiencia" [(ngModel)]="experienciaAnios"></ion-input></ion-item>
-      
-      
+      <ion-list>
+        <ion-radio-group [(ngModel)]="modalidad">
+          <ion-list-header><ion-label>Modalidad de trabajo</ion-label></ion-list-header>
+          <ion-item><ion-radio value="Presencial">Presencial</ion-radio></ion-item>
+          <ion-item><ion-radio value="Híbrida">Híbrida</ion-radio></ion-item>
+          <ion-item><ion-radio value="Remota">Remota</ion-radio></ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-list>
+        <ion-list-header><ion-label>Habilidades técnicas</ion-label></ion-list-header>
+        <ion-item><ion-checkbox [checked]="habilidades.includes('JavaScript')" (ionChange)="alternarHabilidad('JavaScript', $event.detail.checked)">JavaScript</ion-checkbox></ion-item>
+        <ion-item><ion-checkbox [checked]="habilidades.includes('TypeScript')" (ionChange)="alternarHabilidad('TypeScript', $event.detail.checked)">TypeScript</ion-checkbox></ion-item>
+        <ion-item><ion-checkbox [checked]="habilidades.includes('Angular')" (ionChange)="alternarHabilidad('Angular', $event.detail.checked)">Angular</ion-checkbox></ion-item>
+        <ion-item><ion-checkbox [checked]="habilidades.includes('Bases de datos')" (ionChange)="alternarHabilidad('Bases de datos', $event.detail.checked)">Bases de datos</ion-checkbox></ion-item>
+        <ion-item><ion-checkbox [checked]="habilidades.includes('Firebase')" (ionChange)="alternarHabilidad('Firebase', $event.detail.checked)">Firebase</ion-checkbox></ion-item>
+      </ion-list>
+
+      <h2>Disponibilidad</h2>
+      <ion-item>
+        <ion-label>Fecha disponible para iniciar</ion-label>
+        <ion-datetime presentation="date" [min]="fechaHoy" [(ngModel)]="fechaDisponibilidad"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Aspiración salarial (USD)" labelPlacement="stacked" type="number" min="0.01" step="0.01" placeholder="Ej. 1200" [(ngModel)]="aspiracionSalarial"></ion-input>
+      </ion-item>
+
+      <h2>Presentación</h2>
+      <ion-item>
+        <ion-textarea label="Resumen profesional" labelPlacement="stacked" placeholder="Cuéntenos sobre su experiencia y perfil" [autoGrow]="true" [(ngModel)]="resumen"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox [(ngModel)]="consentimiento">Acepto el tratamiento de mis datos de prueba</ion-checkbox>
+      </ion-item>
+
       <ion-button expand="block" class="ion-margin-top" [disabled]="guardando" (click)="guardar()">{{ guardando ? 'Guardando...' : 'Guardar estudiante' }}</ion-button>
 
       <p *ngIf="mensaje" role="status">{{ mensaje }}</p>
@@ -45,6 +83,6 @@
   <ion-list><ion-item *ngFor="let estudiante of estudiantes"><ion-label>
         <h2>{{ estudiante.nombre }}</h2>
         <p>{{ estudiante.correo }}</p>
-        <p>Edad: {{ estudiante.experienciaAnios }}</p>
+      <p>Años de experiencia: {{ estudiante.experienciaAnios }}</p>
       </ion-label></ion-item></ion-list>
 </ion-content>
