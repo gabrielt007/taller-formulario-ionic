@@ -1,1 +1,7 @@
-{"name":"registro-estudiantes","integrations":{},"type":"angular"}
+{
+  "name": "registro-estudiantes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
