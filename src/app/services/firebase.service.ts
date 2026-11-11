@@ -4,9 +4,19 @@ import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore';
 import { environment } from '../../environments/environment';
 
 export interface Estudiante {
-  nombre: string;
-  correo: string;
-  edad: number;
+  nombre: string,
+  correo: string,
+  telefono: string,
+  fechaNacimiento: string,
+  cargo: string,
+  nivelAcademico: string,
+  experienciaAnios: number,
+  modalidad: string,
+  habilidades: string = string[],
+  fechaDisponibilidad: string,
+  aspiracionSalarial: number,
+  resumen: string,
+  consentimiento: boolean
 }
 
 @Injectable({ providedIn: 'root' })

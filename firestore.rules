@@ -5,6 +5,8 @@ service cloud.firestore {
       // SOLO PARA DEMOSTRACIÓN CON DATOS FICTICIOS. No usar en producción.
       allow read, create: if true;
       allow update, delete: if false;
+      // No permitir modificar ni eliminar
+      allow update, delete: if false;
     }
   }
 }
