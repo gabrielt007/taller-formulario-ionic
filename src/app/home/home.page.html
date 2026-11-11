@@ -12,21 +12,33 @@
         </ion-datetime>
       </ion-item>
       <ion-item>
-      <ion-list>
-        <ion-item>
-          <ion-select placeholder="Select a Fruit">
-            <div slot="label">Favorite Fruit <ion-text color="danger">(Required)</ion-text></div>
-            <ion-select-option value="apple">Apple</ion-select-option>
-            <ion-select-option value="banana">Banana</ion-select-option>
-            <ion-select-option value="orange">Orange</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
-      <ion-input label="Años de experiencia" labelPlacement="stacked" type="number" placeholder="Ingrese sus años de experiencia" [(ngModel)]="experienciaAnios"></ion-input></ion-item>
+      <ion-item>
+        <ion-list>
+          <ion-item>
+            <ion-select placeholder="Seleciona los cargos" [(ngModel)]="cargo">
+              <div slot="label">Cargo al que postula</div>
+              <ion-select-option value="Desarrollador móvil">Desarrollador móvil</ion-select-option>
+              <ion-select-option value="Desarrrollador web">Desarrrollador web</ion-select-option>
+              <ion-select-option value="Encargado de Ciberseguridad">Encargado de Ciberseguridad</ion-select-option>
+              <ion-select-option value="IT Service" >IT Service</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-item>
+      <ion-item>
+        <ion-radio-group value="Nivel académico" [(ngModel)]="nivelAcademico">
+          <ion-radio value="Tercer Nivel">Tercer Nivel</ion-radio><br />
+          <ion-radio value="Cuarto Nivel">Cuarto Nivel</ion-radio><br />
+          <ion-radio value="Quinto nivel">Quinto nivel</ion-radio>
+        </ion-radio-group>
+      </ion-item>
+      <ion-item><ion-input label="Años de experiencia" labelPlacement="stacked" type="number" placeholder="Ingrese sus años de experiencia" [(ngModel)]="experienciaAnios"></ion-input></ion-item>
       
-      <ion-button expand="block" class="ion-margin-top" [disabled]="guardando" (click)="guardar()">{{ guardando ?
-        'Guardando...' : 'Guardar estudiante' }}</ion-button>
+      
+      <ion-button expand="block" class="ion-margin-top" [disabled]="guardando" (click)="guardar()">{{ guardando ? 'Guardando...' : 'Guardar estudiante' }}</ion-button>
+
       <p *ngIf="mensaje" role="status">{{ mensaje }}</p>
+
     </ion-card-content>
   </ion-card>
   <h2>Estudiantes registrados</h2>

@@ -1,12 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton, IonList, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonDatetime } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton, IonList, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonDatetime, IonSelect, IonSelectOption, IonText, IonRadio, IonRadioGroup } from '@ionic/angular/standalone';
 import { FirebaseService, Estudiante } from '../services/firebase.service';
 
 @Component({
   selector: 'app-home', standalone: true, templateUrl: './home.page.html', styleUrls: ['./home.page.scss'],
-  imports: [CommonModule, FormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton, IonList, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonDatetime]
+  imports: [CommonModule, FormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton, IonList, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonDatetime, IonSelect, IonSelectOption, IonText, IonRadio, IonRadioGroup]
 })
 export class HomePage implements OnInit {
   private firebase = inject(FirebaseService);
