@@ -1,12 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton, IonList, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton, IonList, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonDatetime } from '@ionic/angular/standalone';
 import { FirebaseService, Estudiante } from '../services/firebase.service';
 
 @Component({
   selector: 'app-home', standalone: true, templateUrl: './home.page.html', styleUrls: ['./home.page.scss'],
-  imports: [CommonModule, FormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton, IonList, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardContent]
+  imports: [CommonModule, FormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton, IonList, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonDatetime]
 })
 export class HomePage implements OnInit {
   private firebase = inject(FirebaseService);
@@ -17,7 +17,7 @@ export class HomePage implements OnInit {
   fechaNacimiento = '';
   cargo = '';
   nivelAcademico = '';
-  expericiaAnios: number | null = null;
+  experienciaAnios: number | null = null;
   modalidad = '';
   habilidades:string = '';
   fechaDisponibilidad = '';
@@ -62,7 +62,7 @@ export class HomePage implements OnInit {
     return;
   }
 
-  if (this.expericiaAnios === null || this.expericiaAnios < 0) {
+  if (this.experienciaAnios === null || this.experienciaAnios < 0) {
     this.mensaje = 'Por favor, ingresa un valor válido para los años de experiencia.';
     return;
   }
@@ -106,9 +106,9 @@ export class HomePage implements OnInit {
         fechaNacimiento: this.fechaNacimiento,
         cargo: this.cargo.trim(),
         nivelAcademico: this.nivelAcademico.trim(),
-        experienciaAnios: Number(this.expericiaAnios),
+        experienciaAnios: Number(this.experienciaAnios),
         modalidad: this.modalidad.trim(),
-        habilidades: this.habilidades.trim(),
+        habilidades: this.habilidades.split(',').map(h => h.trim()).filter(h => h.length > 0),
         fechaDisponibilidad: this.fechaDisponibilidad,
         aspiracionSalarial: Number(this.aspiracionSalarial),
         resumen: this.resumen.trim(),
@@ -121,7 +121,7 @@ export class HomePage implements OnInit {
       this.fechaNacimiento = '';
       this.cargo = '';
       this.nivelAcademico = '';
-      this.expericiaAnios = null;
+      this.experienciaAnios = null;
       this.modalidad = '';
       this.habilidades = '';
       this.fechaDisponibilidad = '';

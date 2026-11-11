@@ -12,7 +12,7 @@ export interface Estudiante {
   nivelAcademico: string,
   experienciaAnios: number,
   modalidad: string,
-  habilidades: string = string[],
+  habilidades: string[],
   fechaDisponibilidad: string,
   aspiracionSalarial: number,
   resumen: string,
