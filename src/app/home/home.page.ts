@@ -138,7 +138,15 @@ export class HomePage implements OnInit {
   }
 
   async cargarEstudiantes() {
-    try { this.estudiantes = await this.firebase.obtenerEstudiantes(); }
-    catch (error) { console.error(error); this.mensaje = 'No se pudo consultar Firestore. Revise la configuración.'; }
-  }
+      this.guardando = true;
+      this.mensaje = '';
+      try { 
+        this.estudiantes = await this.firebase.obtenerEstudiantes(); 
+      } catch (error) {
+        console.error(error);
+        this.mensaje = 'No se pudo consultar Firestore. Revise la conexión.';
+      } finally {
+        this.guardando = false;
+      }
+    }
 }
