@@ -28,8 +28,11 @@ export class FirebaseService {
     return addDoc(collection(this.db, 'estudiantes'), estudiante);
   }
 
-  async obtenerEstudiantes(): Promise<(Estudiante & { id: string })[]> {
-    const resultado = await getDocs(collection(this.db, 'estudiantes'));
-    return resultado.docs.map(doc => ({ id: doc.id, ...(doc.data() as Estudiante) }));
+async obtenerEstudiantes(): Promise<(Estudiante & { id: string })[]> {
+    const resultado = await getDocs(collection(this.db, 'candidatos'));
+    return resultado.docs.map(doc => ({ 
+      id: doc.id, 
+      ...(doc.data() as Estudiante) 
+    }));
   }
 }
