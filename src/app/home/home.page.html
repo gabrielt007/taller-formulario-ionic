@@ -79,10 +79,29 @@
 
     </ion-card-content>
   </ion-card>
-  <h2>Estudiantes registrados</h2>
-  <ion-list><ion-item *ngFor="let estudiante of estudiantes"><ion-label>
-        <h2>{{ estudiante.nombre }}</h2>
-        <p>{{ estudiante.correo }}</p>
-      <p>Años de experiencia: {{ estudiante.experienciaAnios }}</p>
-      </ion-label></ion-item></ion-list>
+<h2>Estudiantes registrados</h2>
+  
+  <ion-button expand="block" fill="outline" size="small" class="ion-margin-bottom" (click)="cargarEstudiantes()">
+    Actualizar lista
+  </ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let estudiante of estudiantes">
+      <ion-label>
+        <h2><strong>{{ estudiante.nombre }}</strong></h2>
+        <p><strong>Correo:</strong> {{ estudiante.correo }}</p>
+        <p><strong>Teléfono:</strong> {{ estudiante.telefono }}</p>
+        <p><strong>Fecha de nacimiento:</strong> {{ estudiante.fechaNacimiento }}</p>
+        <p><strong>Cargo:</strong> {{ estudiante.cargo }}</p>
+        <p><strong>Nivel académico:</strong> {{ estudiante.nivelAcademico }}</p>
+        <p><strong>Años de experiencia:</strong> {{ estudiante.experienciaAnios }}</p>
+        <p><strong>Modalidad:</strong> {{ estudiante.modalidad }}</p>
+        <p><strong>Habilidades:</strong> {{ estudiante.habilidades?.join(', ') }}</p>
+        <p><strong>Fecha de disponibilidad:</strong> {{ estudiante.fechaDisponibilidad }}</p>
+        <p><strong>Aspiración salarial:</strong> ${{ estudiante.aspiracionSalarial }}</p>
+        <p><strong>Resumen:</strong> {{ estudiante.resumen }}</p>
+        <p><strong>Consentimiento:</strong> {{ estudiante.consentimiento ? 'Sí' : 'No' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
